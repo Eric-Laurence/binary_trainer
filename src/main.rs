@@ -13,7 +13,7 @@ enum NumberBase {
     Base64,
 }
 
-struct NumberConverterApp {
+struct BinaryTrainerApp {
     range_input: String,           // string of possible numbers to generate
     input_base: NumberBase,        // input base
     output_base: NumberBase,       // output base
@@ -29,7 +29,7 @@ struct NumberConverterApp {
 }
 
 // give default values
-impl Default for NumberConverterApp {
+impl Default for BinaryTrainerApp {
     fn default() -> Self {
         Self {
             range_input: String::new(),
@@ -50,7 +50,7 @@ impl Default for NumberConverterApp {
 
 
 
-impl NumberConverterApp {
+impl BinaryTrainerApp {
     // parse inputs for all possible numbers to generate
     fn parse_range(range_str: &str) -> Result<Vec<u64>, String> {
         // remove whitespace and split by comma
@@ -158,10 +158,10 @@ impl NumberConverterApp {
 
 
 
-impl eframe::App for NumberConverterApp {
+impl eframe::App for BinaryTrainerApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
-            ui.heading("Number Base Converter");
+            ui.heading("Base Conversion Flashcards");
             
             ui.horizontal(|ui| {
                 // input base dropdown
@@ -263,8 +263,8 @@ fn main() -> Result<(), eframe::Error> {
     
     // open the window
     eframe::run_native(
-        "Number Base Converter",
+        "Base Conversion Flashcards",
         options,
-        Box::new(|_cc| Box::new(NumberConverterApp::default())),
+        Box::new(|_cc| Box::new(BinaryTrainerApp::default())),
     )
 }
